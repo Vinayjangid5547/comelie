@@ -1,77 +1,67 @@
 import { Button } from "@/components/ui/button";
-import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
-import { ParallaxImage } from "@/components/ParallaxImage";
 import { Link } from "react-router-dom";
-import originalLondon from "@/assets/original-london.jpg";
-import originalNewYork from "@/assets/original-newyork.jpg";
-import originalTrunk from "@/assets/original-trunk.jpg";
+import storefrontLondon from "@/assets/storefront-london.jpg";
+import storefrontNewYork from "@/assets/storefront-newyork.jpg";
+import craftsmanship from "@/assets/craftsmanship.jpg";
+import { Card } from '@/components/ui/card';
 
 export const LocationsSection = () => {
   const locations = [
     {
-      title: "LONDON",
-      subtitle: "11 Savile Row",
-      description: "Bespoke Tailoring",
-      image: originalLondon,
-      link: "/locations"
+      title: 'OUR LOCATIONS',
+      location: 'LONDON Savile Row',
+      service: 'Bespoke Tailoring',
+      buttonText: 'DISCOVER NOW',
+      image: 'https://www.huntsmansavilerow.com/cdn/shop/files/Cutter_Drafting_A_Pattern_At_11_Savile_Row.jpg?v=1739455290&width=1200'
     },
     {
-      title: "NEW YORK",
-      subtitle: "W.57th St",
-      description: "Bespoke Tailoring", 
-      image: originalNewYork,
-      link: "/locations"
+      title: 'OUR LOCATIONS',
+      location: 'NEW YORK W.57th St',
+      service: 'Bespoke Tailoring',
+      buttonText: 'DISCOVER NOW',
+      image: 'https://www.huntsmansavilerow.com/cdn/shop/files/Peck_A_054.jpg?v=1723023059&width=1200'
     },
     {
-      title: "USA",
-      subtitle: "Trunk Shows",
-      description: "Dates & Locations",
-      image: originalTrunk,
-      link: "/locations"
+      title: 'OUR LOCATIONS',
+      location: 'USA Trunk Shows',
+      service: 'Dates & Locations',
+      buttonText: 'DISCOVER NOW',
+      image: 'https://www.huntsmansavilerow.com/cdn/shop/files/Trunk-Show-Process-0215.jpg?v=1746713718&width=1200'
     }
   ];
 
   return (
-    <section className="py-16 bg-background parallax-container">
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
-        <ScrollAnimationWrapper animationType="fade-up">
-          <div className="grid md:grid-cols-3 gap-8">
-            {locations.map((location, index) => (
-              <ScrollAnimationWrapper 
-                key={index} 
-                animationType={index % 2 === 0 ? 'slide-left' : 'slide-right'}
-                delay={index * 200}
-              >
-                <Link to={location.link} className="block">
-                  <div className="group cursor-pointer hover-parallax">
-                    <ParallaxImage
-                      src={location.image}
-                      alt={`${location.title} Location`}
-                      className="aspect-[4/3] rounded-lg mb-4"
-                      parallaxOffset={0.05 + index * 0.02}
-                    >
-                      <div className="bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
-                      <div className="absolute top-6 left-6 text-white">
-                        <p className="text-sm font-light tracking-wider">OUR LOCATIONS</p>
-                      </div>
-                      <div className="absolute bottom-6 left-6 text-white">
-                        <h3 className="text-2xl font-serif mb-1">{location.title}</h3>
-                        <p className="text-lg font-light mb-2">{location.subtitle}</p>
-                        <p className="text-sm italic mb-4">{location.description}</p>
-                        <Button 
-                          variant="ghost" 
-                          className="huntsman-button border-white text-white hover:bg-white hover:text-black p-0 px-6"
-                        >
-                          DISCOVER NOW
-                        </Button>
-                      </div>
-                    </ParallaxImage>
-                  </div>
-                </Link>
-              </ScrollAnimationWrapper>
-            ))}
-          </div>
-        </ScrollAnimationWrapper>
+        <div className="grid md:grid-cols-3 gap-8">
+          {locations.map((location, index) => (
+            <Card key={index} className="card-huntsman group cursor-pointer hover-elegant">
+              <div className="relative overflow-hidden">
+                <img
+                  src={location.image}
+                  alt={location.location}
+                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300"></div>
+                
+                <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
+                  <p className="text-small-caps mb-2 opacity-90">
+                    {location.title}
+                  </p>
+                  <h3 className="heading-medium mb-2">
+                    {location.location}
+                  </h3>
+                  <p className="text-elegant mb-6 italic">
+                    {location.service}
+                  </p>
+                  <button className="btn-huntsman-inverse self-start">
+                    {location.buttonText}
+                  </button>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );
