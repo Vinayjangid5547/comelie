@@ -1,95 +1,76 @@
 import { Button } from "@/components/ui/button";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { ParallaxImage } from "@/components/ParallaxImage";
+import { Card } from '@/components/ui/card';
 
 export const JournalSection = () => {
   const articles = [
-    {
-      title: "Introducing The Autumn-Winter 2025 Collection",
-      subtitle: "Iconic London: Campbell Carey's Inspiration for the Autumn–Winter Collection.",
-      image: "https://www.huntsmansavilerow.com/cdn/shop/articles/Shot6_2075_copy_1_0da92230-b877-4865-9d28-4e1b8f3d58bd.jpg?v=1756828143&width=1500",
-      link: "/blogs/journal/introducing-the-autumn-winter-2025-collection"
+   {
+      title: 'Huntsman & House of Hazelwood Unite for the Ultimate Bespoke Experience',
+      subtitle: 'At the Distillers One of One Auction.',
+      image: 'https://www.huntsmansavilerow.com/cdn/shop/articles/02_copy_56b75478-e6a4-4749-afcb-bfbf2509c1b5.jpg?v=1758709072&width=1500'
     },
     {
-      title: "Huntsman at Royal Ascot 2025",
-      subtitle: "An afternoon of celebration in Car Park One.",
-      image: "https://www.huntsmansavilerow.com/cdn/shop/articles/40-ROYAL_ASCOT_2025_BY_GEORGE_ON_A_BOAT-5478_copy_f14d289b-e5d0-4d21-a31b-0f0100389a47.jpg?v=1751877229&width=1500",
-      link: "/blogs/journal/huntsman-at-royal-ascot-2025"
+      title: 'Introducing The Autumn-Winter 2025 Collection',
+      subtitle: 'Iconic London: Campbell Carey\'s Inspiration for the Autumn–Winter Collection.',
+      image: 'https://www.huntsmansavilerow.com/cdn/shop/articles/Shot6_2075_copy_1_0da92230-b877-4865-9d28-4e1b8f3d58bd.jpg?v=1756828143&width=1500'
     },
     {
-      title: "Huntsman x Fashion Trust Arabia: An Evening of Cocktails, Craft & Creative Alliance",
-      subtitle: "In a refined evening that brought together global design voices and champions of craftsmanship, Huntsman reaffirmed its ongoing partnership with Fashion Trust Arabia (FTA) during an elegant cocktail reception hosted in London.",
-      image: "https://www.huntsmansavilerow.com/cdn/shop/articles/Fai_Khadra_Tania_Fares_Roksanda_Ilincic_and_Pierre_LaGrange200_8cca9c5e-7cb5-4b29-9978-c9a5a17083c6.jpg?v=1747823730&width=1500",
-      link: "/blogs/journal/huntsman-x-fashion-trust-arabia-an-evening-of-cocktails-craft-creative-alliance"
+      title: 'Huntsman x Fashion Trust Arabia: An Evening of Cocktails, Craft & Creative Alliance',
+      subtitle: 'In a refined evening that brought together global design voices and champions of craftsmanship, Huntsman reaffirmed its ongoing partnership.',
+      image: 'https://www.huntsmansavilerow.com/cdn/shop/articles/Fai_Khadra_Tania_Fares_Roksanda_Ilincic_and_Pierre_LaGrange200_8cca9c5e-7cb5-4b29-9978-c9a5a17083c6.jpg?v=1747823730&width=1500'
     },
     {
-      title: "Huntsman at Anglesey Abbey: 'Tailoring An Image' with The National Trust",
-      subtitle: "This summer, Huntsman is delighted to partner with the National Trust for a unique exhibition at Anglesey Abbey, Cambridgeshire: 'Tailoring An Image'.",
-      image: "https://www.huntsmansavilerow.com/cdn/shop/articles/Close_up_of_Lord_Fairhaven_s_red_leather_cropped_riding_breeches_made_by_H._Huntsman_Sons_National_Trust_Pete_Huggins_2f7ae8c0-53ff-46b4-9855-4cc400dea87a.jpg?v=1751889272&width=1500",
-      link: "/blogs/journal/huntsman-at-anglesey-abbey-tailoring-an-image-with-the-national-trust"
+      title: 'Huntsman at Anglesey Abbey: \'Tailoring An Image\' with The National Trust.',
+      subtitle: 'This summer, Huntsman is delighted to partner with the National Trust for a unique exhibition at Anglesey Abbey, Cambridgeshire.',
+      image: 'https://www.huntsmansavilerow.com/cdn/shop/articles/Close_up_of_Lord_Fairhaven_s_red_leather_cropped_riding_breeches_made_by_H._Huntsman_Sons_National_Trust_Pete_Huggins_2f7ae8c0-53ff-46b4-9855-4cc400dea87a.jpg?v=1751889272&width=1500'
     },
     {
-      title: "A Legacy Recut: The Huntsman Suit of André Leon Talley Finds New Life",
-      subtitle: "At Huntsman, bespoke is a legacy. Fashion icon André Leon Talley's Huntsman suit, revived by Henry Howell and tailored anew in New York, embodies this ethos. More than cloth, it's a tribute — a living garment that honours Talley's unmatched style and ensures his sartorial story continues with elegance and reverence.",
-      image: "https://www.huntsmansavilerow.com/cdn/shop/articles/2.4.25_ALT-53_c93460cb-a220-44e0-bf39-91ff5a62840e.jpg?v=1751616340&width=1500",
-      link: "/blogs/journal/a-legacy-recut-the-huntsman-suit-of-andre-leon-talley-finds-new-life"
+      title: 'A Legacy Recut: The Huntsman Suit of André Leon Talley Finds New Life',
+      subtitle: 'At Huntsman, bespoke is a legacy. Fashion icon André Leon Talley\'s Huntsman suit, revived by Henry Howell and tailored anew in New York.',
+      image: 'https://www.huntsmansavilerow.com/cdn/shop/articles/2.4.25_ALT-53_c93460cb-a220-44e0-bf39-91ff5a62840e.jpg?v=1751616340&width=1500'
     }
   ];
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-16 md:py-24 bg-huntsman-light-gray">
       <div className="container mx-auto px-4">
-        <ScrollAnimationWrapper animationType="fade-up">
-          <h2 className="text-3xl font-serif text-center mb-12 tracking-wider">
+        <div className="text-center mb-16">
+          <h2 className="heading-large">
             The Huntsman Journal
           </h2>
-        </ScrollAnimationWrapper>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article, index) => (
-            <ScrollAnimationWrapper 
-              key={index} 
-              animationType="scale-in"
-              delay={index * 100}
-            >
-              <article className="group cursor-pointer">
-                <ParallaxImage
+            <Card key={index} className="card-huntsman group cursor-pointer hover-elegant">
+              <div className="relative overflow-hidden">
+                <img
                   src={article.image}
                   alt={article.title}
-                  className="aspect-[4/3] rounded-lg mb-4"
-                  parallaxOffset={0.02 + index * 0.01}
-                >
-                  <div className="bg-transparent group-hover:bg-black/10 transition-colors duration-300" />
-                </ParallaxImage>
-                <div className="space-y-3">
-                  <h3 className="text-lg font-serif leading-tight group-hover:text-primary transition-colors">
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {article.subtitle}
-                  </p>
-                  <a 
-                    href={article.link}
-                    className="huntsman-link text-sm inline-block"
-                  >
-                    Read More
-                  </a>
-                </div>
-              </article>
-            </ScrollAnimationWrapper>
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-lg font-medium mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                  {article.title}
+                </h3>
+                <p className="text-elegant text-muted-foreground mb-4 line-clamp-3">
+                  {article.subtitle}
+                </p>
+                <button className="text-sm font-medium tracking-wide uppercase text-primary hover:underline">
+                  Read More
+                </button>
+              </div>
+            </Card>
           ))}
         </div>
-        
-        <ScrollAnimationWrapper animationType="fade-up">
-          <div className="text-center">
-            <a 
-              href="/blogs/journal"
-              className="huntsman-button border-foreground text-foreground hover:bg-foreground hover:text-background"
-            >
-              More Articles
-            </a>
-          </div>
-        </ScrollAnimationWrapper>
+
+        <div className="text-center mt-12">
+          <button className="btn-huntsman">
+            More Articles
+          </button>
+        </div>
       </div>
     </section>
   );

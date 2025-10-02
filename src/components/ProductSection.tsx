@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
-import { ParallaxImage } from "@/components/ParallaxImage";
 import { Link } from "react-router-dom";
-import originalSuiting from "@/assets/original-suiting.jpg";
+import collectionShowcase from "@/assets/collection-showcase.jpg";
 import jacketsImage from "@/assets/jackets.jpg";
 import outerwearImage from "@/assets/outerwear.jpg";
 import knitwearImage from "@/assets/knitwear.jpg";
@@ -27,75 +25,48 @@ export const ProductSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-background parallax-container">
-      <div className="container mx-auto px-4">
-        {/* Suiting Hero */}
-        <ScrollAnimationWrapper animationType="scale-in">
-          <div className="mb-16">
-            <ParallaxImage
-              src={originalSuiting}
-              alt="Suiting Collection"
-              className="h-[70vh] rounded-lg"
-              parallaxOffset={0.2}
-            >
-              <div className="bg-black/30" />
-              <ScrollAnimationWrapper 
-                animationType="slide-left"
-                delay={300}
-              >
-                <div className="absolute bottom-12 left-12 text-white max-w-md">
-                  <h2 className="text-4xl font-serif mb-6">SUITING</h2>
-                  <p className="text-lg mb-8 leading-relaxed">
-                    Cut in the Huntsman House silhouette, our ready-to-wear suits are designed for the discerning gentleman who values both time and tradition.
-                  </p>
-                  <Link to="/suiting">
-                    <Button 
-                      variant="outline" 
-                      className="huntsman-button border-white text-white hover:bg-white hover:text-black"
-                    >
-                      SHOP NOW
-                    </Button>
-                  </Link>
-                </div>
-              </ScrollAnimationWrapper>
-            </ParallaxImage>
-          </div>
-        </ScrollAnimationWrapper>
+    <section className="relative bg-huntsman-light-gray">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://www.huntsmansavilerow.com/cdn/shop/files/HUNTSMAN_SS24_Shot_4_315_copy_d2015a29-9145-41fa-ab96-b923b7022f10.jpg?v=1717158395&width=1200"
+          alt="Huntsman Suiting"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      </div>
 
-        {/* Product Categories Grid */}
-        <ScrollAnimationWrapper animationType="fade-up">
-          <div className="grid md:grid-cols-3 gap-8">
-            {products.map((product, index) => (
-              <ScrollAnimationWrapper 
-                key={index}
-                animationType="scale-in"
-                delay={index * 150}
-              >
-                <Link to={product.link} className="block">
-                  <div className="group cursor-pointer hover-parallax">
-                    <ParallaxImage
-                      src={product.image}
-                      alt={product.title}
-                      className="aspect-[4/5] rounded-lg"
-                      parallaxOffset={0.03 + index * 0.01}
-                    >
-                      <div className="bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
-                      <div className="absolute bottom-6 left-6 text-white">
-                        <h3 className="text-2xl font-serif mb-4">{product.title}</h3>
-                        <Button 
-                          variant="ghost" 
-                          className="huntsman-button border-white text-white hover:bg-white hover:text-black p-0 px-6"
-                        >
-                          SHOP NOW
-                        </Button>
-                      </div>
-                    </ParallaxImage>
-                  </div>
-                </Link>
-              </ScrollAnimationWrapper>
-            ))}
+      {/* Content */}
+      <div className="relative z-10 py-32 md:py-48">
+        {/* Desktop: Text overlay on image */}
+        <div className="hidden md:block text-center text-white">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-4xl lg:text-5xl font-light tracking-wide mb-6">
+              SUITING
+            </h2>
+            <p className="text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+              Cut in the Huntsman House silhouette, our ready-to-wear suits are designed for the discerning gentleman who values both time and tradition.
+            </p>
+            <Button className="bg-white text-black hover:bg-gray-100 py-3 px-8 text-sm font-medium tracking-wider uppercase transition-all duration-300">
+              SHOP NOW
+            </Button>
           </div>
-        </ScrollAnimationWrapper>
+        </div>
+      </div>
+
+      {/* Mobile: Text below image */}
+      <div className="block md:hidden bg-white py-16">
+        <div className="container mx-auto px-4 text-center max-w-4xl">
+          <h2 className="text-3xl font-light tracking-wide mb-6">
+            SUITING
+          </h2>
+          <p className="text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Cut in the Huntsman House silhouette, our ready-to-wear suits are designed for the discerning gentleman who values both time and tradition.
+          </p>
+          <Button className="bg-huntsman-burgundy text-white hover:bg-opacity-90 py-3 px-8 text-sm font-medium tracking-wider uppercase transition-all duration-300">
+            SHOP NOW
+          </Button>
+        </div>
       </div>
     </section>
   );
