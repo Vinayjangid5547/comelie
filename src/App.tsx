@@ -9,7 +9,7 @@ import ReadyToWear from "./pages/ReadyToWear";
 import Company from "./pages/Company";
 import Suiting from "./pages/Suiting";
 import Jackets from "./pages/Jackets";
-import Outerwear from "./pages/Outerwear";
+import OuterwearCollection from "./pages/OuterwearCollection";
 import Knitwear from "./pages/Knitwear";
 import Bespoke from "./pages/Bespoke";
 import Journal from "./pages/Journal";
@@ -24,6 +24,7 @@ import Shipping from "./pages/Shipping";
 import CareInstructions from "./pages/CareInstructions";
 import SuitsCollection from "./pages/SuitsCollection";
 import AutumnWinter from "./pages/AutumnWinter";
+import Outerwear from "./pages/Outerwear-out";
 
 const queryClient = new QueryClient();
 
@@ -37,11 +38,12 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/ready-to-wear" element={<ReadyToWear />} />
           <Route path="/company" element={<Company />} />
-          <Route path="/suiting" element={<Suiting />} />
           <Route path="/jackets" element={<Jackets />} />
           <Route path="/outerwear" element={<Outerwear />} />
+          <Route path="/evening-wear-collection" element={<OuterwearCollection />} />
           <Route path="/knitwear" element={<Knitwear />} />
           <Route path="/bespoke" element={<Bespoke />} />
+          <Route path="/suiting" element={<Suiting />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="/locations" element={<Locations />} />
           <Route path="/faqs" element={<FAQs />} />
@@ -54,6 +56,7 @@ const App = () => (
           <Route path="/care-instructions" element={<CareInstructions />} />
           <Route path="/collections/suits" element={<SuitsCollection />} />
           <Route path="/collections/autumn-winter-2025" element={<AutumnWinter />} />
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
