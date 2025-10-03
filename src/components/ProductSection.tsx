@@ -26,15 +26,6 @@ export const ProductSection = () => {
 
   return (
     <section className="relative bg-huntsman-light-gray">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src="https://www.huntsmansavilerow.com/cdn/shop/files/HUNTSMAN_SS24_Shot_4_315_copy_d2015a29-9145-41fa-ab96-b923b7022f10.jpg?v=1717158395&width=1200"
-          alt="Huntsman Suiting"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-      </div>
 
       {/* Content */}
       <div className="relative z-10 py-32 md:py-48">

@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, Search, User, ShoppingBag, X, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useScrollTrigger } from '@/hooks/useParallax';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { AuthModal } from './auth/AuthModal';
+import { TbMessageDots } from 'react-icons/tb';
 
 const navigationItems = [
   {
@@ -48,6 +49,10 @@ export const Header = () => {
   const { isTriggered } = useScrollTrigger(50);
   const isMobile = useIsMobile();
   const navigate = useNavigate();
+  const location = useLocation().pathname;
+  const sidebarRef = useRef(null);
+
+  console.log("LOCATIONNNNNNN,", location);
 
   const handleMobileSearch = () => {
     if (mobileSearchQuery.trim()) {
@@ -57,30 +62,53 @@ export const Header = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sidebarRef.current) {
+        // Center the sidebar vertically in the viewport
+        const viewportHeight = window.innerHeight;
+        const sidebarHeight = sidebarRef.current.offsetHeight;
+        const topPosition = (viewportHeight - sidebarHeight) / 2;
+        sidebarRef.current.style.top = `${topPosition}px`;
+      }
+    };
+
+    // Run on mount, scroll, and resize
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+
+    // Cleanup event listeners
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      <header className={`fixed top-0 left-0 right-0 z-50 py-6 transition-all duration-500 ${
         isTriggered 
-          ? 'bg-white border-b shadow-lg' 
+          ? 'bg-white shadow-lg' 
           : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4">
           <div className={`flex items-center justify-between transition-all duration-500 ${
-            isTriggered ? 'h-14' : 'h-16'
+            isTriggered ? 'text-rose-800' : 'text-white'
           }`}>
             {/* Left: Navigation and Search */}
             <div className="flex items-center space-x-4">
               <button 
                 onClick={() => setIsMenuOpen(true)}
-                className="flex items-center space-x-2 p-2 hover:bg-muted rounded-sm transition-colors"
+                className="flex items-center space-x-2 p-2 rounded-sm transition-colors"
                 aria-label="Open menu"
               >
-                <Menu className="h-5 w-5" />
-                <span className="text-sm font-medium">Menu</span>
+                <Menu className="h-5 w-5 " />
+                <span>Menu</span>
               </button>
               {!isMobile && (
                 <button 
-                  className="p-2 hover:bg-muted rounded-sm transition-colors"
+                  className="p-2 hover:text-rose-800  rounded-sm transition-colors"
                   onClick={() => navigate('/search')}
                 >
                   <Search className="h-5 w-5" />
@@ -91,25 +119,25 @@ export const Header = () => {
             {/* Center: Logo */}
             <div className="flex-1 flex justify-center">
               <Link to="/" className="text-center">
-                <h1 className="text-2xl md:text-3xl font-serif tracking-[0.3em]">HUNTSMAN</h1>
-                <p className="text-[10px] text-muted-foreground tracking-[0.2em]">ESTABLISHED 1849</p>
+                <h1 className="text-2xl md:text-3xl font-mono tracking-[0.3em]">HUNTSMAN</h1>
+                <p className="text-[12px] italic font-serif tracking-[0.1em]">established 1849</p>
               </Link>
             </div>
 
             {/* Right: Auth, Contact, Currency, Cart */}
             <div className="flex items-center space-x-3">
               <button 
-                className="p-2 hover:bg-muted rounded-sm transition-colors"
+                className="hidden sm:block p-2 hover:text-rose-800  rounded-sm transition-colors"
                 onClick={() => setIsAuthOpen(true)}
               >
                 <User className="h-5 w-5" />
               </button>
-              <select className="text-xs bg-transparent border-none focus:outline-none cursor-pointer tracking-wider">
+              <select className="hidden sm:block text-xs bg-transparent border-none focus:outline-none cursor-pointer tracking-wider">
                 <option>USD $</option>
                 <option>GBP £</option>
                 <option>EUR €</option>
               </select>
-              <button className="p-2 hover:bg-muted rounded-sm transition-colors relative">
+              <button className="p-2 hover:text-rose-800  rounded-sm transition-colors relative">
                 <ShoppingBag className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 h-4 w-4 bg-foreground text-background text-xs rounded-full flex items-center justify-center">
                   0
@@ -127,7 +155,7 @@ export const Header = () => {
                     value={mobileSearchQuery}
                     onChange={(e) => setMobileSearchQuery(e.target.value)}
                     placeholder="Search products, collections..."
-                    className="w-full pr-10"
+                    className={`w-full pr-10 rounded-full ${location === "/" ? "block" : "hidden"}`}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         handleMobileSearch();
@@ -135,7 +163,7 @@ export const Header = () => {
                     }}
                   />
                   <button
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-muted rounded-sm transition-colors"
+                    className={`absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:text-rose-800  rounded-sm transition-colors ${location === "/" ? "block" : "hidden"}`}
                     onClick={handleMobileSearch}
                   >
                     <Search className="h-4 w-4" />
@@ -145,40 +173,28 @@ export const Header = () => {
             </div>
           )}
         </div>
-        
-        {/* Shop Now Banner Below Navbar */}
-        <div className={`border-t transition-all duration-500 ${
-          isTriggered ? 'bg-white' : 'bg-white/95'
-        }`}>
-          <div className="container mx-auto px-4 py-2">
-            <Link 
-              to="/collections/suits" 
-              className="flex items-center justify-center space-x-2 text-sm font-medium hover:text-primary transition-colors"
-            >
-              <span className="tracking-wider">SHOP NOW - SUITS COLLECTION</span>
-              <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
-            </Link>
-          </div>
-        </div>
       </header>
 
       {/* Contact Us Vertical Sidebar */}
-      <Link to="/contact" className="fixed right-0 top-1/2 -translate-y-1/2 z-40 hover:pr-1 transition-all duration-300">
-        <div className="bg-foreground text-background px-2 py-8 rounded-l-lg shadow-lg">
-          <div className="flex flex-col items-center gap-1">
-            {['C', 'O', 'N', 'T', 'A', 'C', 'T', ' ', 'U', 'S'].map((letter, index) => (
-              <span key={index} className="text-xs font-medium tracking-wider">
-                {letter === ' ' ? '•' : letter}
-              </span>
-            ))}
-          </div>
+      <Link
+        to="/contact"
+        className="fixed right-4 top-[28em] z-40 hover:pr-1 transition-all duration-300"
+      >
+        <div
+          ref={sidebarRef}
+          className="bg- text-red-500 rounded-full bg-rose-800 p-2 shadow-lg flex items-center justify-center relative group"
+        >
+          <TbMessageDots className="text-xl text-white size-12" />
+          <span className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+            Contact Us
+          </span>
         </div>
       </Link>
 
       {/* Navigation Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-50 bg-background">
-          <div className={`h-full ${isMobile ? 'w-full' : 'w-1/2'} bg-background border-r shadow-xl`}>
+          <div className="h-full w-full bg-background border-r shadow-xl">
             <div className="flex justify-between items-center p-4 border-b">
               <div className="text-center">
                 <h2 className="text-xl font-serif tracking-wider">HUNTSMAN</h2>
@@ -186,7 +202,7 @@ export const Header = () => {
               </div>
               <button 
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center space-x-2 p-2 hover:bg-muted rounded-sm transition-colors"
+                className="flex items-center space-x-2 p-2 hover:text-rose-800  rounded-sm transition-colors"
               >
                 <X className="h-5 w-5" />
                 <span className="text-sm font-medium">Close</span>

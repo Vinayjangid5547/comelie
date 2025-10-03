@@ -1,40 +1,30 @@
+
+import Heritage from "../assets/heritage.webp";
+import WorldOfHuntman from "../assets/worldOfHuntman.webp";
+import Bespoke from "../assets/bespoke.webp";
+
 const BrandShowcase = () => {
   const showcaseItems = [
     {
       title: 'HERITAGE',
       buttonText: 'DISCOVER',
       bgColor: 'bg-huntsman-charcoal',
-      textColor: 'text-white'
+      textColor: 'text-white',
+      bgImage:Heritage
     },
     {
       title: 'WORLD OF HUNTSMAN', 
       buttonText: 'ENTER',
       bgColor: 'bg-huntsman-charcoal',
-      textColor: 'text-white'
+      textColor: 'text-white',
+      bgImage:WorldOfHuntman
     },
     {
       title: 'BESPOKE LIFESTYLE',
       buttonText: 'DISCOVER', 
       bgColor: 'bg-huntsman-charcoal',
-      textColor: 'text-white'
-    },
-    {
-      title: 'HERITAGE',
-      buttonText: 'DISCOVER',
-      bgColor: 'bg-huntsman-charcoal',
-      textColor: 'text-white'
-    },
-    {
-      title: 'WORLD OF HUNTSMAN',
-      buttonText: 'ENTER', 
-      bgColor: 'bg-huntsman-charcoal',
-      textColor: 'text-white'
-    },
-    {
-      title: 'BESPOKE LIFESTYLE',
-      buttonText: 'DISCOVER',
-      bgColor: 'bg-huntsman-charcoal', 
-      textColor: 'text-white'
+      textColor: 'text-white',
+      bgImage:Bespoke
     }
   ];
 
@@ -45,7 +35,8 @@ const BrandShowcase = () => {
           {showcaseItems.map((item, index) => (
             <div
               key={index}
-              className={`${item.bgColor} ${item.textColor} p-12 text-center hover-elegant cursor-pointer`}
+              className={`${item.bgColor} ${item.textColor} p-12 text-center hover-elegant cursor-pointer bg-cover`}
+              style={{ backgroundImage: `url(${item.bgImage})` }}
             >
               <h2 className="heading-medium mb-8">
                 {item.title}

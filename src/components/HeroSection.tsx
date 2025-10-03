@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import heroLuxury from "@/assets/hero-luxury.jpg";
+import { Link } from "react-router-dom";
 
 export const HeroSection = () => {
   return (
-   <section className="relative h-screen w-full overflow-hidden">
+   <section className=" h-screen w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -24,19 +25,19 @@ export const HeroSection = () => {
           </p>
 
           {/* Main Heading */}
-          <h1 className="heading-display text-white mb-6">
-            HUNTSMAN
+          <h1 className="heading-display text-white mb-6 text-6xl">
+            The AW25 Collection
           </h1>
 
           {/* Location Text */}
-          <p className="text-lg md:text-xl tracking-[0.15em] mb-12 font-light">
-            SAVILE ROW, LONDON | 57<sup>TH</sup> ST, NEW YORK
+          <p className="text-lg md:text-sm text-white/70 tracking-[0.15em] mb-12 font-light">
+            This season, Huntsman invites you to discover a wardrobe shaped by our remarkable capital city. 
           </p>
 
           {/* CTA Button */}
-          <Button className="btn-huntsman-inverse">
-            SHOP THE COLLECTION
-          </Button>
+          <Link to ="/collections/autumn-winter-2025" className="border py-3 px-3 hover:border-2">
+            SHOP NOW
+          </Link>
         </div>
       </div>
 

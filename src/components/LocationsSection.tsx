@@ -31,32 +31,34 @@ export const LocationsSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8">
+    <section className="pt-4 bg-white">
+      <div className="w-full">
+        <div className="grid md:grid-cols-3 gap-4"> {/* no gaps between cards */}
           {locations.map((location, index) => (
-            <Card key={index} className="card-huntsman group cursor-pointer hover-elegant">
+            <Card
+              key={index}
+              className="card-huntsman group cursor-pointer hover-elegant"
+            >
               <div className="relative overflow-hidden">
                 <img
                   src={location.image}
                   alt={location.location}
-                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-[800px] object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300"></div>
-                
+
+                {/* Text */}
                 <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
                   <p className="text-small-caps mb-2 opacity-90">
                     {location.title}
                   </p>
-                  <h3 className="heading-medium mb-2">
-                    {location.location}
-                  </h3>
-                  <p className="text-elegant mb-6 italic">
-                    {location.service}
-                  </p>
-                  <button className="btn-huntsman-inverse self-start">
+                  <h3 className="heading-medium mb-2">{location.location}</h3>
+                  <p className="text-elegant mb-6 italic">{location.service}</p>
+                  <Link
+                    to="/collections/suits"
+                    className="btn-huntsman-inverse self-start"
+                  >
                     {location.buttonText}
-                  </button>
+                  </Link>
                 </div>
               </div>
             </Card>
@@ -64,5 +66,6 @@ export const LocationsSection = () => {
         </div>
       </div>
     </section>
+
   );
 };
